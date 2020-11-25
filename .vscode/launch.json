@@ -5,17 +5,34 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(gdb) 연결",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "프로그램 이름 입력(예: ${workspaceFolder}/a.out)",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "gdb에 자동 서식 지정 사용",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+
+
+        {
             "name": "(gdb) 시작",
             "type": "cppdbg",
             "request": "launch",
-            "program": "프로그램 이름 입력(예: ${workspaceFolder}/a.exe)",
-            "args": [],
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": ["testfile1", "dir6/"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "/path/to/gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "gdb에 자동 서식 지정 사용",
