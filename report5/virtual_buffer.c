@@ -18,18 +18,20 @@ static struct file_operations vd_fops = {
 
 static int debug = 0;
 
-#define MY_IOCTL_NUMBER100
-#define MY_IOCTL_READ_IOR(MY_IOCTL_NUMBER, 0, int)
-#define MY_IOCTL_WRITE_IOW(MY_IOCTL_NUMBER, 1, int)
+#define MY_IOCTL_NUMBER 100
+#define MY_IOCTL_READ _IOR(MY_IOCTL_NUMBER, 0, int)
+#define MY_IOCTL_WRITE _IOW(MY_IOCTL_NUMBER, 1, int)
 
 static int my_open(struct inode *inode, struct file *filp)
 {
     printk("[VB] opened\n");
+    printk("[VB] inode = %p, flip = %p\n", indoe, flip);
     return 0;
 }
 static int my_release(struct inode *inode, struct file *filp)
 {
     printk("[VB] released\n");
+    printk("[VB] inode = %p, flip = %p\n", indoe, flip);
     return 0;
 }
 static ssize_t my_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos)
