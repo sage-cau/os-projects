@@ -9,10 +9,11 @@ int main()
     char *str_hello = "Hello, Virtual Buffer!!";
     char buff[BUFF_SIZE];
 
-    printf("Device driver test.");
+    printf("Device driver test.\n");
     if ((fd = open("/dev/virtual_buffer", O_RDWR)) > 0)
     {
         write(fd, str_hello, strlen(str_hello) + 1);
+        printf("write to device: %s\n", buff);
         read(fd, buff, BUFF_SIZE);
         printf("read from device: %s\n", buff);
         close(fd);

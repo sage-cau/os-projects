@@ -19,13 +19,13 @@ static int debug = 0;
 static int my_open(struct inode *inode, struct file *filp)
 {
     printk("[VB] opened\n");
-    printk("[VB] inode = %p, flip = %p\n", inode, filp);
+    printk("[VB] inode = %p, filp = %p\n", inode, filp);
     return 0;
 }
 static int my_release(struct inode *inode, struct file *filp)
 {
     printk("[VB] released\n");
-    printk("[VB] inode = %p, flip = %p\n", inode, filp);
+    printk("[VB] inode = %p, filp = %p\n", inode, filp);
     return 0;
 }
 static ssize_t my_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos)
