@@ -1,5 +1,5 @@
 KERNELDIR = /lib/modules/$(shell uname -r)/build
-obj-m := module_hello.o
+obj-m := virtual_buffer.o
 
 KDIR := /lib/modules/$(shell uname -r)/build
 PWD	:= $(shell pwd)
