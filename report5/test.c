@@ -13,7 +13,7 @@ int main()
     if ((fd = open("/dev/virtual_buffer", O_RDWR)) > 0)
     {
         write(fd, str_hello, strlen(str_hello) + 1);
-        printf("write to device: %s\n", buff);
+        printf("write to device: %s\n", str_hello);
         read(fd, buff, BUFF_SIZE);
         printf("read from device: %s\n", buff);
         close(fd);
