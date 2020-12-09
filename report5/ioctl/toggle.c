@@ -2,9 +2,9 @@
 #include <unistd.h>    // open, close, ioctl
 #include <sys/fcntl.h> // O_RDWR, O_NONBLOCK
 #include <sys/ioctl.h> // _IOR, _IOW
-#define MY_IOCTL_NUMBER100
-#define MY_IOCTL_READ_IOR(MY_IOCTL_NUMBER, 0, int)
-#define MY_IOCTL_WRITE_IOW(MY_IOCTL_NUMBER, 1, int)
+#define MY_IOCTL_NUMBER 100
+#define MY_IOCTL_READ _IOR(MY_IOCTL_NUMBER, 0, int)
+#define MY_IOCTL_WRITE _IOW(MY_IOCTL_NUMBER, 1, int)
 int main()
 {
     int fd;
