@@ -8,12 +8,7 @@
 #define MAJOR_NUMBER 240 // 2020
 
 static char *buffer = NULL;
-static struct file_operations vd_fops = {
-    .read = my_read,
-    .write = my_write,
-    .open = my_open,
-    .release = my_release
-};
+
 
 static int debug = 0;
 
@@ -24,13 +19,13 @@ static int debug = 0;
 static int my_open(struct inode *inode, struct file *filp)
 {
     printk("[VB] opened\n");
-    printk("[VB] inode = %p, flip = %p\n", inode, flip);
+    printk("[VB] inode = %p, flip = %p\n", inode, filp);
     return 0;
 }
 static int my_release(struct inode *inode, struct file *filp)
 {
     printk("[VB] released\n");
-    printk("[VB] inode = %p, flip = %p\n", inode, flip);
+    printk("[VB] inode = %p, flip = %p\n", inode, filp);
     return 0;
 }
 static ssize_t my_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos)
@@ -46,6 +41,12 @@ static ssize_t my_read(struct file *filp, char *buf, size_t count, loff_t *f_pos
     return count;
 }
 
+static struct file_operations vd_fops = {
+    .read = my_read,
+    .write = my_write,
+    .open = my_open,
+    .release = my_release
+};
 
 int __init my_init(void)
 {

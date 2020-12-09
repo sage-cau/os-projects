@@ -8,13 +8,6 @@
 #define MAJOR_NUMBER 240 // 2020
 
 static char *buffer = NULL;
-static struct file_operations vd_fops = {
-    .read = my_read,
-    .write = my_write,
-    .unlocked_ioctl = my_ioctl, // from kernel 2.6.36
-    .open = my_open,
-    .release = my_release
-};
 
 static int debug = 1;
 
@@ -27,13 +20,13 @@ static int debug = 1;
 static int my_open(struct inode *inode, struct file *filp)
 {
     MSG("[VB] opened\n");
-    MSG("[VB] inode = %p, flip = %p\n", inode, flip);
+    MSG("[VB] inode = %p, flip = %p\n", inode, filp);
     return 0;
 }
 static int my_release(struct inode *inode, struct file *filp)
 {
     MSG("[VB] released\n");
-    MSG("[VB] inode = %p, flip = %p\n", inode, flip);
+    MSG("[VB] inode = %p, flip = %p\n", inode, filp);
     return 0;
 }
 static ssize_t my_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos)
@@ -76,6 +69,13 @@ static long my_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
     return 0;
 }
 
+static struct file_operations vd_fops = {
+    .read = my_read,
+    .write = my_write,
+    .unlocked_ioctl = my_ioctl, // from kernel 2.6.36
+    .open = my_open,
+    .release = my_release
+};
 
 int __init my_init(void)
 {
