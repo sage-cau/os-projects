@@ -27,13 +27,13 @@ static int debug = 1;
 static int my_open(struct inode *inode, struct file *filp)
 {
     MSG("[VB] opened\n");
-    MSG("[VB] inode = %p, flip = %p\n", indoe, flip);
+    MSG("[VB] inode = %p, flip = %p\n", inode, flip);
     return 0;
 }
 static int my_release(struct inode *inode, struct file *filp)
 {
     MSG("[VB] released\n");
-    MSG("[VB] inode = %p, flip = %p\n", indoe, flip);
+    MSG("[VB] inode = %p, flip = %p\n", inode, flip);
     return 0;
 }
 static ssize_t my_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos)
