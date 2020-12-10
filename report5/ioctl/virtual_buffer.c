@@ -20,13 +20,13 @@ static int debug = 1;
 static int my_open(struct inode *inode, struct file *filp)
 {
     MSG("[VB] opened\n");
-    MSG("[VB] inode = %p, flip = %p\n", inode, filp);
+    MSG("[VB] inode = %p, filp = %p\n", inode, filp);
     return 0;
 }
 static int my_release(struct inode *inode, struct file *filp)
 {
     MSG("[VB] released\n");
-    MSG("[VB] inode = %p, flip = %p\n", inode, filp);
+    MSG("[VB] inode = %p, filp = %p\n", inode, filp);
     return 0;
 }
 static ssize_t my_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos)
@@ -98,13 +98,3 @@ module_init(my_init);
 module_exit(my_exit);
 
 MODULE_LICENSE("GPL");
-
-/*
-
-$ cat /proc/devices   
-# sudomknod/dev/virtual_bufferc 240 0    // 2020
-# sudochmod0666 /dev/virtual_buffer
-# sudoinsmodvirtual_buffer.ko
-$ tail –f /var/log/syslog
-
-*/
